@@ -1,10 +1,10 @@
-import { auth } from "@clerk/nextjs/server"
+import { getUserEmail } from "@/utils/clerk/server"
+import { redirect } from "next/navigation"
 
 const RedirectToPayment = async () => {
-  const { getToken } = await auth()
-  const email = await getToken({ template: 'testToken' })
+  const userEmail = await getUserEmail()
   
-  console.log(email);
+  redirect(`${process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK}?prefilled_email=${userEmail}`)
   
 
   return (
