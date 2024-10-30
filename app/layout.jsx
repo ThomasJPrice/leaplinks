@@ -1,6 +1,8 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+
+import { GeistSans } from 'geist/font/sans';
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "LeapLinks",
@@ -12,8 +14,9 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={``}
+          className={`${GeistSans.className}`}
         >
+          <Toaster />
           {children}
         </body>
       </html>
